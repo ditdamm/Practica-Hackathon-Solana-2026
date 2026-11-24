@@ -1,0 +1,64 @@
+{% extends "modulos/base.html" %}
+
+{% block titulo %}Transacciones | Los DataOS{% endblock %}
+{% block encabezado %}Transacciones{% endblock %}
+{% block subtitulo %}Historial unificado de movimientos, aportes y gastos{% endblock %}
+
+{% block estilos %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gestion/transacciones.css') }}">
+{% endblock %}
+
+{% block contenido %}
+    <!-- CABECERA -->
+    <section class="cabecera-seccion">
+        <div>
+            <h2>Libro de movimientos ({{ transacciones|length }})</h2>
+            <p>Registro cronológico completo de todas las operaciones realizadas.</p>
+        </div>
+    </section>
+
+    <!-- TABLA UNIFICADA -->
+    <section class="panel-tabla">
+        <div class="tabla-contenedor">
+            <table class="tabla-tx">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Concepto</th>
+                        <th>Grupo</th>
+                        <th>Integrante</th>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Importe</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tx in transacciones %}
+                    <tr>
+                        <td><span class="codigo-tx">{{ tx.id }}</span></td>
+                        <td><strong>{{ tx.concepto }}</strong></td>
+                        <td>{{ tx.grupo }}</td>
+                        <td>{{ tx.integrante }}</td>
+                        <td>
+                            <span class="tipo-tx {{ 'ingreso' if tx.tipo == 'Aportación' else 'egreso' }}">
+                                {{ '↗ ' + tx.tipo if tx.tipo == 'Aportación' else '↘ ' + tx.tipo }}
+                            </span>
+                        </td>
+                        <td class="texto-gris">{{ tx.fecha }}</td>
+                        <td>
+                            {% if tx.tipo == 'Aportación' %}
+                                <strong class="texto-verde">+${{ "{:,.2f}".format(tx.monto) }}</strong>
+                            {% else %}
+                                <strong class="texto-rojo">-${{ "{:,.2f}".format(tx.monto) }}</strong>
+                            {% endif %}
+                            <small class="texto-gris">{{ tx.moneda }}</small>
+                        </td>
+                        <td><span class="badge-estado">{{ tx.estado }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

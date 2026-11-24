@@ -1,0 +1,65 @@
+{% extends "modulos/base.html" %}
+
+{% block titulo %}Gastos | Los DataOS{% endblock %}
+{% block encabezado %}Gastos{% endblock %}
+{% block subtitulo %}Control de egresos y compras realizadas con fondos grupales{% endblock %}
+
+{% block estilos %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gestion/gastos.css') }}">
+{% endblock %}
+
+{% block contenido %}
+    <!-- ENCABEZADO Y BOTON -->
+    <section class="cabecera-seccion">
+        <div>
+            <h2>Registro de gastos</h2>
+            <p>Visualiza los pagos efectuados y quién fue el responsable.</p>
+        </div>
+        <button class="btn-morado">+ Registrar gasto</button>
+    </section>
+
+    <!-- INIDICADORES RAPIDOS -->
+    <section class="resumen-gastos">
+        <article class="mini-kpi">
+            <span>Total ejecutado</span>
+            <strong class="texto-rojo">-${{ "{:,.2f}".format(total_gastado) }} <small>USD</small></strong>
+        </article>
+
+        <article class="mini-kpi">
+            <span>Gastos aprobados</span>
+            <strong>{{ gastos|length }}</strong>
+        </article>
+    </section>
+
+    <!-- TABLA DE GASTOS -->
+    <section class="panel-tabla">
+        <div class="tabla-contenedor">
+            <table class="tabla-gastos">
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Grupo</th>
+                        <th>Responsable</th>
+                        <th>Método</th>
+                        <th>Fecha</th>
+                        <th>Monto</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gasto in gastos %}
+                    <tr>
+                        <td><strong>{{ gasto.concepto }}</strong></td>
+                        <td>{{ gasto.grupo }}</td>
+                        <td>{{ gasto.responsable }}</td>
+                        <td><span class="tag-metodo">{{ gasto.metodo }}</span></td>
+                        <td class="texto-gris">{{ gasto.fecha }}</td>
+                        <td><strong class="texto-rojo">-${{ "{:,.2f}".format(gasto.monto) }}</strong> <small class="texto-gris">{{ gasto.moneda }}</small></td>
+                        <td><span class="badge-aprobado">{{ gasto.estado }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

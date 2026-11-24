@@ -1,0 +1,75 @@
+{% extends "modulos/base.html" %}
+
+{% block titulo %}Fondo Común | Los DataOS{% endblock %}
+{% block encabezado %}Fondo común{% endblock %}
+{% block subtitulo %}Balance disponible, comprometido y aportes individuales por grupo{% endblock %}
+
+{% block estilos %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gestion/fondo_comun.css') }}">
+{% endblock %}
+
+{% block contenido %}
+    <section class="cabecera-seccion">
+        <div>
+            <h2>Estado de las cajas colectivas</h2>
+            <p>Control transparente del dinero recaudado frente a los egresos aprobados.</p>
+        </div>
+    </section>
+
+    <section class="lista-fondos">
+        {% for grupo in grupos %}
+            {# Calculamos el gasto total de este grupo #}
+            {% set ns = namespace(gastado=0) %}
+            {% for g in gastos if g.grupo == grupo.nombre %}
+                {% set ns.gastado = ns.gastado + g.monto %}
+            {% endfor %}
+            {% set disponible = grupo.recaudado - ns.gastado %}
+
+            <article class="tarjeta-fondo">
+                <!-- CABECERA DEL FONDO -->
+                <div class="fondo-cabecera">
+                    <div>
+                        <span class="tag-moneda">{{ grupo.moneda }}</span>
+                        <h3>{{ grupo.nombre }}</h3>
+                    </div>
+                    <span class="texto-gris">Meta del fondo: {{ grupo.simbolo }}{{ "{:,.0f}".format(grupo.meta_grupo) }}</span>
+                </div>
+
+                <!-- CAJAS DE BALANCE -->
+                <div class="balance-grid">
+                    <div class="caja-metrica">
+                        <span>Total recaudado</span>
+                        <strong>{{ grupo.simbolo }}{{ "{:,.0f}".format(grupo.recaudado) }}</strong>
+                    </div>
+
+                    <div class="caja-metrica">
+                        <span>Gastado / Comprometido</span>
+                        <strong class="texto-rojo">-{{ grupo.simbolo }}{{ "{:,.0f}".format(ns.gastado) }}</strong>
+                    </div>
+
+                    <div class="caja-metrica destacada">
+                        <span>Saldo disponible</span>
+                        <strong class="texto-verde">{{ grupo.simbolo }}{{ "{:,.0f}".format(disponible) }}</strong>
+                    </div>
+                </div>
+
+                <!-- DESGLOSE POR INTEGRANTE -->
+                <div class="seccion-miembros">
+                    <h4>Aportes por integrante</h4>
+                    <div class="grid-miembros">
+                        {% for m in grupo.integrantes %}
+                            {% set pct = ((m.aportado / m.meta) * 100) | round | int %}
+                            <div class="item-miembro">
+                                <div class="miembro-top">
+                                    <span><strong>{{ m.nombre }}</strong> <small>({{ m.rol }})</small></span>
+                                    <span>{{ grupo.simbolo }}{{ "{:,.0f}".format(m.aportado) }} / {{ grupo.simbolo }}{{ "{:,.0f}".format(m.meta) }}</span>
+                                </div>
+                                <progress class="barra-mini" value="{{ pct }}" max="100"></progress>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

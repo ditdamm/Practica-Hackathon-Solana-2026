@@ -1,0 +1,72 @@
+.metricas-solana {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.tarjeta-mercado {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 22px;
+    border-radius: 14px;
+}
+
+.tarjeta-mercado span {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.tarjeta-mercado strong {
+    display: block;
+    font-size: 1.7rem;
+    margin-bottom: 4px;
+}
+
+.tarjeta-mercado strong small {
+    font-size: 0.85rem;
+    color: var(--purple-light);
+}
+
+.tarjeta-mercado small {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.panel-equivalencia {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.panel-equivalencia h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.panel-equivalencia p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.texto-morado {
+    color: var(--purple-light);
+}
+
+.tag-red {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--green);
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    padding: 8px 14px;
+    border-radius: 20px;
+}

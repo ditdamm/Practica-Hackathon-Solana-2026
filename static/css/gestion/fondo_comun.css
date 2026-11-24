@@ -1,0 +1,143 @@
+.cabecera-seccion h2 {
+    font-size: 1.25rem;
+}
+
+.cabecera-seccion p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin-top: 4px;
+}
+
+.lista-fondos {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.tarjeta-fondo {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fondo-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fondo-cabecera div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tag-moneda {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--purple-light);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.fondo-cabecera h3 {
+    font-size: 1.2rem;
+}
+
+.texto-gris {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.balance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.caja-metrica {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.caja-metrica.destacada {
+    border-color: rgba(34, 197, 94, 0.35);
+    background: rgba(34, 197, 94, 0.04);
+}
+
+.caja-metrica span {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.caja-metrica strong {
+    font-size: 1.45rem;
+}
+
+.texto-verde {
+    color: var(--green);
+}
+
+.texto-rojo {
+    color: #ef4444;
+}
+
+.seccion-miembros h4 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.grid-miembros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+.item-miembro {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    border-radius: 10px;
+}
+
+.miembro-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    margin-bottom: 8px;
+}
+
+.miembro-top small {
+    color: var(--text-muted);
+}
+
+.barra-mini {
+    width: 100%;
+    height: 6px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: none;
+    background: var(--bg-hover);
+}
+
+.barra-mini::-webkit-progress-bar {
+    background: var(--bg-hover);
+}
+
+.barra-mini::-webkit-progress-value {
+    background: var(--purple);
+}
+
+.barra-mini::-moz-progress-bar {
+    background: var(--purple);
+}

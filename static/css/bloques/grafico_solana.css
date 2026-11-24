@@ -1,0 +1,64 @@
+.panel-grafico {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 26px;
+    border-radius: 16px;
+}
+
+.panel-grafico h2 {
+    font-size: 1.15rem;
+}
+
+.texto-gris {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 2px;
+}
+
+.precio-destacado {
+    margin: 18px 0 10px;
+}
+
+.precio-destacado span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.precio-destacado h3 {
+    font-size: 1.8rem;
+    margin: 4px 0;
+}
+
+.positivo {
+    color: var(--green);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.contenedor-svg {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.linea-sol {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.linea-sol .guia {
+    stroke: var(--border);
+    stroke-width: 1;
+}
+
+.linea-sol circle {
+    fill: var(--purple-light);
+}
+
+.dias-eje {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding: 8px 18px 0;
+}

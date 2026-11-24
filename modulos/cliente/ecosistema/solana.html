@@ -1,0 +1,53 @@
+{% extends "modulos/base.html" %}
+
+{% block titulo %}Ecosistema Solana | Los DataOS{% endblock %}
+{% block encabezado %}Ecosistema Solana{% endblock %}
+{% block subtitulo %}Métricas del mercado, cotización de SOL y equivalencia de fondos{% endblock %}
+
+{% block estilos %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ecosistema/solana.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bloques/velas_solana.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bloques/grafico_solana.css') }}">
+{% endblock %}
+
+{% block contenido %}
+    <!-- INIDICADORES PRINCIPALES DE MERCADO -->
+    <section class="metricas-solana">
+        <article class="tarjeta-mercado">
+            <span>Capitalización de mercado</span>
+            <strong>${{ "%.2f"|format(solana.capitalizacion / 1000000000) }} B</strong>
+            <small>Valor total en circulación</small>
+        </article>
+
+        <article class="tarjeta-mercado">
+            <span>Volumen en 24 horas</span>
+            <strong>${{ "%.2f"|format(solana.volumen_24h / 1000000000) }} B</strong>
+            <small>Actividad reciente del mercado</small>
+        </article>
+
+        <article class="tarjeta-mercado">
+            <span>Oferta circulante</span>
+            <strong>{{ "%.0f"|format(solana.oferta_circulante / 1000000) }} M <small>SOL</small></strong>
+            <small>Tokens disponibles</small>
+        </article>
+    </section>
+
+    <!-- GRAFICO DE VELAS (ALZAS Y BAJAS) -->
+    {% include "modulos/bloques/velas_solana.html" %}
+
+    <!-- GRAFICO DE LINEA SEMANAL -->
+    {% include "modulos/bloques/grafico_solana.html" %}
+
+    <!-- REFERENCIA DE EQUIVALENCIA -->
+    <section class="panel-equivalencia">
+        <div>
+            <h3>Referencia para fondos colectivos</h3>
+            <p>
+                Con la cotización simulada actual de <strong>${{ solana.precio }} USD</strong> por SOL, 
+                un fondo de <strong>$1,000 USD</strong> equivale aproximadamente a 
+                <strong class="texto-morado">{{ "%.2f"|format(1000 / solana.precio) }} SOL</strong>.
+            </p>
+        </div>
+        <span class="tag-red">Red: Solana Mainnet (Demo)</span>
+    </section>
+{% endblock %}

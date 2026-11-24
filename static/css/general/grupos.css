@@ -1,0 +1,164 @@
+.cabecera-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecera-seccion h2 {
+    font-size: 1.25rem;
+}
+.cabecera-seccion p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin-top: 4px;
+}
+
+.cuadricula-grupos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta-grupo {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.tarjeta-grupo:hover {
+    transform: translateY(-3px);
+    border-color: var(--purple);
+}
+
+.grupo-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.etiqueta-categoria {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--purple-light);
+    background: rgba(139, 92, 246, 0.12);
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.insignia-estado {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--orange);
+    background: rgba(245, 158, 11, 0.12);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.tarjeta-grupo h3 {
+    font-size: 1.2rem;
+}
+
+.grupo-desc {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.4;
+}
+
+.grupo-finanzas {
+    display: flex;
+    justify-content: space-between;
+    background: var(--bg-primary);
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.grupo-finanzas span {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.grupo-finanzas strong {
+    font-size: 1.15rem;
+}
+
+.grupo-finanzas small {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.texto-derecha {
+    text-align: right;
+}
+
+.progreso-texto {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.progreso-fondo {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-hover);
+    border-radius: 10px;
+    overflow: hidden; }
+
+.progreso-relleno {
+    height: 100%;
+    width: var(--progreso, 0%);
+    background: linear-gradient(90deg, var(--purple), var(--purple-light));
+    border-radius: 10px;
+}
+
+.grupo-pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.lista-avatares {
+    display: flex;
+    align-items: center;
+}
+
+.mini-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--bg-hover);
+    border: 2px solid var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--purple-light);
+    margin-left: -8px;
+}
+
+.mini-avatar:first-child {
+    margin-left: 0;
+}
+
+.mini-avatar.extra {
+    background: var(--purple);
+    color: #fff;
+}
+
+.total-miembros {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}

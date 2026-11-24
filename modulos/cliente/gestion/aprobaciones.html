@@ -1,0 +1,60 @@
+{% extends "modulos/base.html" %}
+
+{% block titulo %}Aprobaciones | Los DataOS{% endblock %}
+{% block encabezado %}Aprobaciones{% endblock %}
+{% block subtitulo %}Consenso y votación de movimientos del grupo{% endblock %}
+
+{% block estilos %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gestion/aprobaciones.css') }}">
+{% endblock %}
+
+{% block contenido %}
+    <!-- ENCABEZADO -->
+    <section class="cabecera-seccion">
+        <div>
+            <h2>Solicitudes de aprobación ({{ aprobaciones|length }})</h2>
+            <p>Revisa y vota los gastos propuestos antes de liberar fondos.</p>
+        </div>
+    </section>
+
+    <!-- LISTA DE TARJETAS DE APROBACION -->
+    <section class="lista-aprobaciones">
+        {% for item in aprobaciones %}
+            {% set porcentaje_votos = ((item.votos_favor / item.total_votos) * 100) | round | int %}
+            
+            <article class="tarjeta-aprobacion">
+                <div class="aprobacion-info">
+                    <div class="aprobacion-etiquetas">
+                        <span class="tipo-tag">{{ item.tipo }}</span>
+                        <span class="grupo-tag">{{ item.grupo }}</span>
+                    </div>
+                    <h3>{{ item.titulo }}</h3>
+                    <p class="monto-aprobacion">
+                        Monto solicitado: <strong>${{ "{:,.2f}".format(item.monto) }} <small>{{ item.moneda }}</small></strong>
+                    </p>
+                </div>
+
+                <!-- PROGRESO DE VOTACION -->
+                <div class="aprobacion-votos">
+                    <div class="votos-texto">
+                        <span>Consenso del grupo</span>
+                        <strong>{{ item.votos_favor }} / {{ item.total_votos }} votos ({{ porcentaje_votos }}%)</strong>
+                    </div>
+                    <progress class="barra-votos" value="{{ porcentaje_votos }}" max="100"></progress>
+                </div>
+
+                <!-- ESTADO / ACCIONES -->
+                <div class="aprobacion-estado">
+                    {% if item.estado == 'Aprobado' %}
+                        <span class="badge-aprobado">✓ Aprobado</span>
+                    {% else %}
+                        <div class="botones-voto">
+                            <button class="btn-aprobar">Aprobar</button>
+                            <button class="btn-rechazar">Rechazar</button>
+                        </div>
+                    {% endif %}
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

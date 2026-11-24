@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Los DataOS{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% block estilos %}{% endblock %}
+</head>
+<body>
+    <div class="diseno-app">
+        
+        <!-- BARRA LATERAL -->
+        <aside class="barra-lateral">
+            <div class="marca">
+                <div class="logo-d">D</div>
+                <div>
+                    <h2>Los DataOS</h2>
+                    <span>Financial ecosystem</span>
+                </div>
+            </div>
+
+            <nav class="menu-nav">
+                <p class="categoria-menu">GENERAL</p>
+                <a href="{{ url_for('inicio_cliente') }}" class="enlace-nav {{ 'activo' if pagina_activa == 'inicio' }}">⊞ Resumen</a>
+                <a href="{{ url_for('grupos_cliente') }}" class="enlace-nav {{ 'activo' if pagina_activa == 'grupos' }}">◉ Mis grupos</a>
+
+                <p class="categoria-menu">GESTIÓN FINANCIERA</p>
+                <a href="{{ url_for('aportes_cliente') }}" class="enlace-nav {{ 'activo' if pagina_activa == 'aportes' }}">↗ Aportes</a>
+                <a href="{{ url_for('aprobaciones_cliente') }}" class="enlace-nav {{ 'activo' if pagina_activa == 'aprobaciones' }}">✓ Aprobaciones</a>
+                <a href="{{ url_for('gastos_cliente') }}" class="enlace-nav {{ 'activo' if pagina_activa == 'gastos' }}">↘ Gastos</a>
+                <a href="{{ url_for('fondo_comun_cliente') }}" class="enlace-nav {{ 'activo' if pagina_activa == 'fondo' }}">◈ Fondo común</a>
+                <a href="{{ url_for('transacciones_cliente') }}" class="enlace-nav {{ 'activo' if pagina_activa == 'transacciones' }}">⇄ Transacciones</a>
+                <a href="{{ url_for('salida_comun_cliente') }}" class="enlace-nav {{ 'activo' if pagina_activa == 'salidas' }}">❖ Salida común</a>
+
+                <p class="categoria-menu">ECOSISTEMA</p>
+                <a href="{{ url_for('solana_cliente') }}" class="enlace-nav {{ 'activo' if pagina_activa == 'solana' }}">◎ Solana</a>
+            </nav>
+
+        </aside>
+
+        <!-- ZONA DERECHA -->
+        <div class="zona-derecha">
+            <header class="barra-superior">
+                <div>
+                    <h1>{% block encabezado %}Resumen{% endblock %}</h1>
+                    <p>{% block subtitulo %}Bienvenido a tu centro financiero{% endblock %}</p>
+                </div>
+                <div class="acciones-top">
+                    <span class="insignia-demo">DATOS SIMULADOS</span>
+                    <div class="logo-d">D</div>
+                </div>
+            </header>
+
+            <main class="area-contenido">
+                {% block contenido %}{% endblock %}
+            </main>
+        </div>
+
+    </div>
+</body>
+</html>

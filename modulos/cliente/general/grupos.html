@@ -1,0 +1,75 @@
+{% extends "modulos/base.html" %}
+
+{% block titulo %}Mis Grupos | Los DataOS{% endblock %}
+{% block encabezado %}Mis grupos{% endblock %}
+{% block subtitulo %}Gestiona tus fondos colectivos e integrantes{% endblock %}
+
+{% block estilos %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general/grupos.css') }}">
+{% endblock %}
+
+{% block contenido %}
+    <!-- ENCABEZADO DE ACCION -->
+    <section class="cabecera-seccion">
+        <div>
+            <h2>Fondos colectivos ({{ grupos|length }})</h2>
+            <p>Visualiza el progreso de recaudación y el estado de cada grupo.</p>
+        </div>
+        <button class="btn-morado">+ Nuevo grupo</button>
+    </section>
+
+    <!-- CUADRICULA DE TARJETAS DE GRUPOS -->
+    <section class="cuadricula-grupos">
+        {% for grupo in grupos %}
+            {% set porcentaje = ((grupo.recaudado / grupo.meta_grupo) * 100) | round | int %}
+            
+            <article class="tarjeta-grupo">
+                <div class="grupo-top">
+                    <span class="etiqueta-categoria">{{ grupo.categoria }}</span>
+                    <span class="insignia-estado">{{ grupo.estado }}</span>
+                </div>
+
+                <h3>{{ grupo.nombre }}</h3>
+                <p class="grupo-desc">{{ grupo.descripcion }}</p>
+
+                <!-- MONTOS -->
+                <div class="grupo-finanzas">
+                    <div>
+                        <span>Recaudado</span>
+                        <strong>{{ grupo.simbolo }}{{ "{:,.0f}".format(grupo.recaudado) }} <small>{{ grupo.moneda }}</small></strong>
+                    </div>
+                    <div class="texto-derecha">
+                        <span>Objetivo</span>
+                        <strong>{{ grupo.simbolo }}{{ "{:,.0f}".format(grupo.meta_grupo) }} <small>{{ grupo.moneda }}</small></strong>
+                    </div>
+                </div>
+
+                <!-- BARRA DE PROGRESO -->
+                <div class="progreso-bloque">
+                    <div class="progreso-texto">
+                        <span>Progreso</span>
+                        <strong>{{ porcentaje }}%</strong>
+                    </div>
+                    <div class="progreso-fondo">
+                        <div class="progreso-relleno" style="--progreso: {{ porcentaje }}%;"></div>
+                    </div>
+                </div>
+
+                <!-- PIE CON AVATARES DE INTEGRANTES -->
+                <div class="grupo-pie">
+                    <div class="lista-avatares">
+                        {% for miembro in grupo.integrantes[:4] %}
+                            <span class="mini-avatar" title="{{ miembro.nombre }}">
+                                {{ miembro.nombre[0] }}
+                            </span>
+                        {% endfor %}
+                        {% if grupo.integrantes|length > 4 %}
+                            <span class="mini-avatar extra">+{{ grupo.integrantes|length - 4 }}</span>
+                        {% endif %}
+                    </div>
+                    <span class="total-miembros">{{ grupo.integrantes|length }} integrantes</span>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Los DataOS - Plataforma de gestión financiera y análisis de Solana">
     <title>Los DataOS | Financial Dashboard</title>
-
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
-
     <div id="app">
-        <div class="loading-screen">
+        <a href="{{ url_for('inicio_cliente') }}" class="loading-screen loading-card">
             <h1>Los DataOS</h1>
             <p>Inicializando plataforma...</p>
-        </div>
+            <span>Entrar al inicio →</span>
+        </a>
     </div>
-
-    <script type="module" src="assets/js/app.js"></script>
-
 </body>
 </html>

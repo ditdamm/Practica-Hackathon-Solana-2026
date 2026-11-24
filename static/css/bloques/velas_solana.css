@@ -1,0 +1,135 @@
+.panel-velas {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.velas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.par-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.par-titulo h3 {
+    font-size: 1.2rem;
+}
+
+.tag-timeframe {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--purple-light);
+    background: rgba(139, 92, 246, 0.14);
+    padding: 3px 10px;
+    border-radius: 8px;
+}
+
+.sub-velas {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+}
+
+.sub-velas strong {
+    color: var(--text-primary);
+}
+
+.leyenda-velas {
+    display: flex;
+    gap: 16px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.leyenda-velas span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot-alza, .dot-baja {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.dot-alza {
+    background: var(--green);
+}
+
+.dot-baja {
+    background: #ef4444;
+}
+
+.svg-velas-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.svg-velas {
+    width: 100%;
+    height: auto;
+    min-width: 600px;
+    display: block;
+}
+
+.grid-linea {
+    stroke: var(--border);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+}
+
+.precio-eje, .hora-eje {
+    fill: var(--text-muted);
+    font-size: 11px;
+    font-family: monospace;
+}
+
+.panel-no-disponible {
+    background: var(--bg-card);
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    padding: 36px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.icono-aviso {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.panel-no-disponible h3 {
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.panel-no-disponible p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    max-width: 420px;
+}
+
+.contenedor-tv, #tradingview_solana {
+    width: 100%;
+    height: 380px;
+}

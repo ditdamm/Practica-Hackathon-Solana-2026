@@ -1,0 +1,67 @@
+{% extends "modulos/base.html" %}
+
+{% block titulo %}Salida Común | Los DataOS{% endblock %}
+{% block encabezado %}Salida común{% endblock %}
+{% block subtitulo %}Planificación y recaudación para eventos y encuentros grupales{% endblock %}
+
+{% block estilos %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gestion/salida_comun.css') }}">
+{% endblock %}
+
+{% block contenido %}
+    <!-- ENCABEZADO Y BOTON -->
+    <section class="cabecera-seccion">
+        <div>
+            <h2>Eventos y salidas ({{ salidas|length }})</h2>
+            <p>Organiza encuentros compartidos y controla cuánto falta para cubrir el presupuesto.</p>
+        </div>
+        <button class="btn-morado">+ Nueva salida</button>
+    </section>
+
+    <!-- TARJETAS DE SALIDAS -->
+    <section class="lista-salidas">
+        {% for salida in salidas %}
+            {% set porcentaje = ((salida.recaudado / salida.estimado) * 100) | round | int %}
+            
+            <article class="tarjeta-salida">
+                <div class="salida-top">
+                    <div>
+                        <span class="grupo-tag">{{ salida.grupo }}</span>
+                        <h3>{{ salida.nombre }}</h3>
+                    </div>
+                    <div class="salida-meta">
+                        <span class="fecha-tag">📅 {{ salida.fecha }}</span>
+                        <span class="estado-recaudando">{{ salida.estado }}</span>
+                    </div>
+                </div>
+
+                <!-- DESGLOCE NUMERICO -->
+                <div class="salida-metricas">
+                    <div class="metrica-item">
+                        <span>Presupuesto estimado</span>
+                        <strong>${{ "{:,.2f}".format(salida.estimado) }}</strong>
+                    </div>
+
+                    <div class="metrica-item">
+                        <span>Recaudado</span>
+                        <strong class="texto-verde">${{ "{:,.2f}".format(salida.recaudado) }}</strong>
+                    </div>
+
+                    <div class="metrica-item">
+                        <span>Pendiente por cubrir</span>
+                        <strong class="texto-naranja">${{ "{:,.2f}".format(salida.pendiente) }}</strong>
+                    </div>
+                </div>
+
+                <!-- PROGRESO DE RECAUDACION -->
+                <div class="salida-progreso">
+                    <div class="progreso-texto">
+                        <span>Progreso del evento</span>
+                        <strong>{{ porcentaje }}% cubierto</strong>
+                    </div>
+                    <progress class="barra-salida" value="{{ porcentaje }}" max="100"></progress>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

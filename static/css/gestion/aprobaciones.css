@@ -1,0 +1,130 @@
+.cabecera-seccion h2 {
+    font-size: 1.25rem;
+}
+
+.cabecera-seccion p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin-top: 4px;
+}
+
+.lista-aprobaciones {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tarjeta-aprobacion {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr auto;
+    align-items: center;
+    gap: 24px;
+}
+
+.aprobacion-etiquetas {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tipo-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--purple-light);
+    background: rgba(139, 92, 246, 0.14);
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+.grupo-tag {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: var(--bg-hover);
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.tarjeta-aprobacion h3 {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+}
+
+.monto-aprobacion {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.monto-aprobacion strong {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+}
+
+.votos-texto {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.barra-votos {
+    width: 100%;
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: none;
+    background: var(--bg-hover);
+}
+
+.barra-votos::-webkit-progress-bar {
+    background: var(--bg-hover);
+    border-radius: 10px;
+}
+
+.barra-votos::-webkit-progress-value {
+    background: var(--green);
+    border-radius: 10px;
+}
+
+.barra-votos::-moz-progress-bar {
+    background: var(--green);
+    border-radius: 10px;
+}
+
+.badge-aprobado {
+    background: rgba(34, 197, 94, 0.14);
+    color: var(--green);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.botones-voto {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-aprobar, .btn-rechazar {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-aprobar {
+    background: var(--green);
+    color: #052e16;
+}
+
+.btn-rechazar {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}

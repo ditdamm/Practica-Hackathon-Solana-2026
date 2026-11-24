@@ -1,0 +1,45 @@
+{% if historial_sol %}
+<section class="panel-grafico">
+    <div class="grafico-info">
+        <h2>Mercado de Solana</h2>
+        <p class="texto-gris">Evolución simulada del precio de SOL</p>
+        
+        <div class="precio-destacado">
+            <span>Precio actual</span>
+            <h3>$185.42</h3>
+            <small class="positivo">+5.28% (24 h)</small>
+        </div>
+    </div>
+
+    <!-- GRAFICO SVG LIMPIO Y LIGERO -->
+    <div class="contenedor-svg">
+        <svg viewBox="0 0 700 220" class="linea-sol">
+            <defs>
+                <linearGradient id="degradadoMorado" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.0"/>
+                </linearGradient>
+            </defs>
+            <!-- LINEAS GUIA HORIZONTALES -->
+            <line x1="0" y1="40" x2="700" y2="40" class="guia"/>
+            <line x1="0" y1="100" x2="700" y2="100" class="guia"/>
+            <line x1="0" y1="160" x2="700" y2="160" class="guia"/>
+            
+            <!-- AREA Y LINEA MORADA -->
+            <polygon points="30,170 135,140 240,195 345,105 450,75 555,125 670,30 670,200 30,200" fill="url(#degradadoMorado)"/>
+            <polyline points="30,170 135,140 240,195 345,105 450,75 555,125 670,30" fill="none" stroke="#8b5cf6" stroke-width="3"/>
+            
+            <!-- PUNTOS -->
+            <circle cx="30" cy="170" r="4"/><circle cx="135" cy="140" r="4"/>
+            <circle cx="240" cy="195" r="4"/><circle cx="345" cy="105" r="4"/>
+            <circle cx="450" cy="75" r="4"/><circle cx="555" cy="125" r="4"/>
+            <circle cx="670" cy="30" r="4"/>
+        </svg>
+        <div class="dias-eje">
+            {% for punto in historial_sol %}
+                <span>{{ punto.dia }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

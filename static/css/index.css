@@ -1,0 +1,112 @@
+:root {
+    --bg-primary: #0b0b12;
+    --bg-card: #151522;
+    --bg-hover: #1d1d2c;
+    --purple: #8b5cf6;
+    --purple-light: #a78bfa;
+    --green: #22c55e;
+    --text-primary: #f4f4f5;
+    --text-secondary: #a1a1aa;
+    --border: #292938;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: Inter, "Segoe UI", sans-serif;
+    min-height: 100vh;
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.12) 0%, var(--bg-primary) 70%);
+}
+
+.loading-screen.loading-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.loading-screen.loading-card:hover {
+    transform: translateY(-4px);
+    background: var(--bg-hover);
+    border-color: var(--purple);
+    box-shadow: 0 24px 48px rgba(139, 92, 246, 0.18);
+}
+
+.loading-card h1 {
+    font-size: 1.85rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.loading-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.loading-card p::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 1.8s infinite;
+}
+
+.loading-card span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--purple);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.loading-screen.loading-card:hover span {
+    background: var(--purple-light);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.4;
+        transform: scale(0.85);
+    }
+}

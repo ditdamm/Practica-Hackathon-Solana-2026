@@ -1,0 +1,62 @@
+{% if velas_solana %}
+    {% set max_p = (velas_solana | map(attribute='maximo') | max) + 1 %}
+    {% set min_p = (velas_solana | map(attribute='minimo') | min) - 1 %}
+    {% set rango = (max_p - min_p) if (max_p - min_p) > 0 else 1 %}
+    {% set max_vol = (velas_solana | map(attribute='vol') | max) or 1 %}
+
+    <section class="panel-velas">
+        <div class="velas-header">
+            <div>
+                <div class="par-titulo">
+                    <h3>SOL / USDT · Detalle de Alzas y Bajas</h3>
+                    <span class="tag-timeframe">1H · Simulado</span>
+                </div>
+                <p class="sub-velas">
+                    Máximo: <strong>${{ "%.2f"|format(max_p - 1) }}</strong> · 
+                    Mínimo: <strong>${{ "%.2f"|format(min_p + 1) }}</strong>
+                </p>
+            </div>
+
+            <div class="leyenda-velas">
+                <span><i class="dot-alza"></i> Alza</span>
+                <span><i class="dot-baja"></i> Baja</span>
+            </div>
+        </div>
+
+        <div class="svg-velas-wrap">
+            <svg viewBox="0 0 760 240" class="svg-velas">
+                <line x1="0" y1="25" x2="705" y2="25" class="grid-linea"/>
+                <text x="712" y="29" class="precio-eje">${{ "%.0f"|format(max_p) }}</text>
+
+                <line x1="0" y1="115" x2="705" y2="115" class="grid-linea"/>
+                <text x="712" y="119" class="precio-eje">${{ "%.0f"|format((max_p + min_p) / 2) }}</text>
+
+                <line x1="0" y1="205" x2="705" y2="205" class="grid-linea"/>
+                <text x="712" y="209" class="precio-eje">${{ "%.0f"|format(min_p) }}</text>
+
+                {% for v in velas_solana %}
+                    {% set x = 30 + (loop.index0 * 58) %}
+                    {% set y_max = 205 - (((v.maximo - min_p) / rango) * 180) %}
+                    {% set y_min = 205 - (((v.minimo - min_p) / rango) * 180) %}
+                    {% set y_ap = 205 - (((v.apertura - min_p) / rango) * 180) %}
+                    {% set y_ci = 205 - (((v.cierre - min_p) / rango) * 180) %}
+                    {% set top_cuerpo = y_ci if v.tipo == 'alza' else y_ap %}
+                    {% set alto_cuerpo = (y_ap - y_ci) if v.tipo == 'alza' else (y_ci - y_ap) %}
+                    {% set alt_vol = (v.vol / max_vol) * 45 %}
+                    {% set color = '#22c55e' if v.tipo == 'alza' else '#ef4444' %}
+
+                    <rect x="{{ x - 10 }}" y="{{ 222 - alt_vol }}" width="20" height="{{ alt_vol }}" fill="{{ color }}" opacity="0.16" rx="2"/>
+                    <line x1="{{ x }}" y1="{{ y_max }}" x2="{{ x }}" y2="{{ y_min }}" stroke="{{ color }}" stroke-width="2"/>
+                    <rect x="{{ x - 9 }}" y="{{ top_cuerpo }}" width="18" height="{{ alto_cuerpo if alto_cuerpo > 4 else 4 }}" fill="{{ color }}" rx="2"/>
+                    <text x="{{ x }}" y="238" text-anchor="middle" class="hora-eje">{{ v.hora }}</text>
+                {% endfor %}
+            </svg>
+        </div>
+    </section>
+{% else %}
+    <section class="panel-no-disponible">
+        <span class="icono-aviso">⚠</span>
+        <h3>Esta sección no está disponible por el momento</h3>
+        <p>No hay datos cargados para mostrar el historial de velas.</p>
+    </section>
+{% endif %}

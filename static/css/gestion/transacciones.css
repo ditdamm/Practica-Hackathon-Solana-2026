@@ -1,0 +1,96 @@
+.cabecera-seccion h2 {
+    font-size: 1.25rem;
+}
+
+.cabecera-seccion p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin-top: 4px;
+}
+
+.panel-tabla {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+.tabla-tx {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.tabla-tx th {
+    color: var(--text-muted);
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tabla-tx td {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.tabla-tx tbody tr:last-child td {
+    border-bottom: none;
+}
+.tabla-tx tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.codigo-tx {
+    font-family: monospace;
+    font-size: 0.82rem;
+    color: var(--purple-light);
+    background: rgba(139, 92, 246, 0.12);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.tipo-tx {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.tipo-tx.ingreso {
+    background: rgba(34, 197, 94, 0.12);
+    color: var(--green);
+}
+
+.tipo-tx.egreso {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+}
+
+.texto-gris {
+    color: var(--text-secondary);
+}
+
+.texto-verde {
+    color: var(--green);
+}
+
+.texto-rojo {
+    color: #ef4444;
+}
+
+.badge-estado {
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.76rem;
+    font-weight: 600;
+}

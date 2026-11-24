@@ -1,0 +1,71 @@
+{% extends "modulos/base.html" %}
+
+{% block titulo %}Aportes | Los DataOS{% endblock %}
+{% block encabezado %}Aportes{% endblock %}
+{% block subtitulo %}Registro de contribuciones a los fondos colectivos{% endblock %}
+
+{% block estilos %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gestion/aportes.css') }}">
+{% endblock %}
+
+{% block contenido %}
+    <!-- ENCABEZADO Y BOTON PRINCIPAL -->
+    <section class="cabecera-seccion">
+        <div>
+            <h2>Historial de aportaciones</h2>
+            <p>Consulta los ingresos realizados por cada integrante en tus grupos.</p>
+        </div>
+        <button class="btn-morado">+ Registrar aporte</button>
+    </section>
+
+    <!-- TARJETAS DE RESUMEN RAPIDO -->
+    <section class="resumen-aportes">
+        <article class="mini-kpi">
+            <span>Total aportado</span>
+            <strong>${{ "{:,.2f}".format(total_aportado) }} <small>USD</small></strong>
+        </article>
+
+        <article class="mini-kpi">
+            <span>Aportes registrados</span>
+            <strong>{{ aportes|length }}</strong>
+        </article>
+
+        <article class="mini-kpi">
+            <span>Estado general</span>
+            <strong class="texto-verde">Al día</strong>
+        </article>
+    </section>
+
+    <!-- TABLA DE APORTES -->
+    <section class="panel-tabla">
+        <div class="tabla-contenedor">
+            <table class="tabla-finanzas">
+                <thead>
+                    <tr>
+                        <th>Integrante</th>
+                        <th>Grupo</th>
+                        <th>Fecha</th>
+                        <th>Monto</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aporte in aportes %}
+                    <tr>
+                        <td>
+                            <div class="celda-usuario">
+                                <span class="avatar-tabla">{{ aporte.integrante[0] }}</span>
+                                <strong>{{ aporte.integrante }}</strong>
+                            </div>
+                        </td>
+                        <td>{{ aporte.grupo }}</td>
+                        <td class="texto-gris">{{ aporte.fecha }}</td>
+                        <td><strong>${{ "{:,.2f}".format(aporte.monto) }}</strong> <small class="texto-gris">{{ aporte.moneda }}</small></td>
+                        <td><span class="badge-completado">{{ aporte.estado }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

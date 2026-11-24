@@ -1,0 +1,81 @@
+.banner-bienvenida {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 28px;
+    border-radius: 16px;
+}
+
+.etiqueta-morada {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--purple-light);
+    letter-spacing: 0.08em;
+}
+
+.banner-bienvenida h2 {
+    font-size: 1.5rem;
+    margin: 6px 0;
+}
+
+.banner-bienvenida p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.cuadricula-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.tarjeta-stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.icono-caja {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple-light);
+}
+
+.stat-titulo {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.tarjeta-stat strong {
+    display: block;
+    font-size: 1.75rem;
+    margin: 6px 0;
+}
+
+.tarjeta-stat small {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.positivo {
+    color: var(--green);
+    font-weight: 600;
+    font-size: 0.85rem;
+}

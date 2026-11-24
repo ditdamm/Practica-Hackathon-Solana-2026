@@ -1,0 +1,54 @@
+{% extends "modulos/base.html" %}
+{% block estilos %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general/inicio.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bloques/grafico_solana.css') }}">
+{% endblock %}
+
+{% block contenido %}
+    <!-- BANNER -->
+    <section class="banner-bienvenida">
+        <div>
+            <span class="etiqueta-morada">PANEL DE CONTROL</span>
+            <h2>Tu ecosistema financiero</h2>
+            <p>Consulta tus grupos, aportaciones y el mercado de Solana desde un mismo lugar.</p>
+        </div>
+        <button class="btn-morado">Explorar grupos</button>
+    </section>
+
+    <!-- TARJETA KPI -->
+    <section class="cuadricula-stats">
+        <article class="tarjeta-stat">
+            <div class="stat-top"><span class="icono-caja">◉</span></div>
+            <span class="stat-titulo">Grupos activos</span>
+            <strong>4</strong>
+            <small>Grupos registrados</small>
+        </article>
+
+        <article class="tarjeta-stat">
+            <div class="stat-top"><span class="icono-caja">♙</span></div>
+            <span class="stat-titulo">Integrantes</span>
+            <strong>18</strong>
+            <small>Participantes de los grupos</small>
+        </article>
+
+        <article class="tarjeta-stat">
+            <div class="stat-top"><span class="icono-caja">⇄</span></div>
+            <span class="stat-titulo">Movimientos</span>
+            <strong>3</strong>
+            <small>Transacciones registradas</small>
+        </article>
+
+        <article class="tarjeta-stat">
+            <div class="stat-top">
+                <span class="icono-caja">◈</span>
+                <span class="positivo">+5.28%</span>
+            </div>
+            <span class="stat-titulo">Precio de SOL</span>
+            <strong>$185.42</strong>
+            <small>Variación de 24 horas</small>
+        </article>
+    </section>
+
+    <!-- GRAFICO MODULAR DE SOLANA -->
+    {% include "modulos/bloques/grafico_solana.html" %}
+{% endblock %}
