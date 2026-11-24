@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Los DataOS | Financial Dashboard</title>
+    <title>Los DataOS</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
+    <!-- Lienzo animado para los puntos y líneas -->
+    <canvas id="red-violeta"></canvas>
+
     <div id="app">
         <a href="{{ url_for('inicio_cliente') }}" class="loading-screen loading-card">
             <h1>Los DataOS</h1>
@@ -14,5 +17,67 @@
             <span>Entrar al inicio →</span>
         </a>
     </div>
+
+    <script>
+        const canvas = document.getElementById('red-violeta');
+        const ctx = canvas.getContext('2d');
+        let particulas = [];
+
+        function ajustarTamano() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', ajustarTamano);
+        ajustarTamano();
+
+        // Crear puntos con posiciones y velocidades aleatorias
+        const cantidad = Math.floor((canvas.width * canvas.height) / 14000);
+        for (let i = 0; i < cantidad; i++) {
+            particulas.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                radio: Math.random() * 2 + 1.5
+            });
+        }
+
+        function animar() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particulas.length; i++) {
+                let p = particulas[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Rebotar suavemente en los bordes
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                // Dibujar el punto violeta brillante
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radio, 0, Math.PI * 2);
+                ctx.fillStyle = '#c084fc';
+                ctx.fill();
+
+                // Conectar con líneas si están cerca
+                for (let j = i + 1; j < particulas.length; j++) {
+                    let p2 = particulas[j];
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+
+                    if (dist < 140) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(168, 85, 247, ${1 - dist / 140})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animar);
+        }
+        animar();
+    </script>
 </body>
 </html>

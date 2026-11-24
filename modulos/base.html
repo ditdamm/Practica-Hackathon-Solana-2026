@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block titulo %}Los DataOS{% endblock %}</title>
+    <title>{% block titulo %}{% endblock %}Los DataOS</title>
+    <!-- ÍCONO DE LA PESTANA DEL NAVEGADOR (FAVICON) -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='iconos/LogoTiendaChico.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     {% block estilos %}{% endblock %}
 </head>
@@ -12,13 +14,13 @@
         
         <!-- BARRA LATERAL -->
         <aside class="barra-lateral">
-            <div class="marca">
+            <a href="{{ url_for('inicio_cliente') }}" class="marca" title="Ir al inicio">
                 <div class="logo-d">D</div>
                 <div>
                     <h2>Los DataOS</h2>
                     <span>Financial ecosystem</span>
                 </div>
-            </div>
+            </a>
 
             <nav class="menu-nav">
                 <p class="categoria-menu">GENERAL</p>
@@ -47,8 +49,11 @@
                     <p>{% block subtitulo %}Bienvenido a tu centro financiero{% endblock %}</p>
                 </div>
                 <div class="acciones-top">
-                    <span class="insignia-demo">DATOS SIMULADOS</span>
-                    <div class="logo-d">D</div>
+                    <div class="acciones-top">
+                        <span class="insignia-demo">DATOS SIMULADOS</span>
+                        <a href="{{ url_for('index') }}" class="btn-salir">Salir</a>
+                        <div class="logo-d">D</div>
+                    </div>
                 </div>
             </header>
 
