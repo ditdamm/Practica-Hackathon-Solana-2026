@@ -15,19 +15,19 @@
     <section class="metricas-solana">
         <article class="tarjeta-mercado">
             <span>Capitalización de mercado</span>
-            <strong>${{ "%.2f"|format(solana.capitalizacion / 1000000000) }} B</strong>
+            <strong>${{ "%.2f"|format(solana.marketCap / 1000000000) }} B</strong>
             <small>Valor total en circulación</small>
         </article>
 
         <article class="tarjeta-mercado">
             <span>Volumen en 24 horas</span>
-            <strong>${{ "%.2f"|format(solana.volumen_24h / 1000000000) }} B</strong>
+            <strong>${{ "%.2f"|format(solana.volume24h / 1000000000) }} B</strong>
             <small>Actividad reciente del mercado</small>
         </article>
 
         <article class="tarjeta-mercado">
             <span>Oferta circulante</span>
-            <strong>{{ "%.0f"|format(solana.oferta_circulante / 1000000) }} M <small>SOL</small></strong>
+            <strong>{{ "%.0f"|format(solana.circulatingSupply / 1000000) }} M <small>SOL</small></strong>
             <small>Tokens disponibles</small>
         </article>
     </section>
@@ -43,11 +43,11 @@
         <div>
             <h3>Referencia para fondos colectivos</h3>
             <p>
-                Con la cotización simulada actual de <strong>${{ solana.precio }} USD</strong> por SOL, 
+                Con la cotización actual de <strong>${{ solana.price }} USD</strong> por SOL, 
                 un fondo de <strong>$1,000 USD</strong> equivale aproximadamente a 
-                <strong class="texto-morado">{{ "%.2f"|format(1000 / solana.precio) }} SOL</strong>.
+                <strong class="texto-morado">{{ "%.2f"|format(1000 / solana.price) }} SOL</strong>.
             </p>
         </div>
-        <span class="tag-red">Red: Solana Mainnet (Demo)</span>
+        <span class="tag-red">Red: Solana Devnet</span>
     </section>
 {% endblock %}

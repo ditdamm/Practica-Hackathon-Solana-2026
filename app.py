@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import datos
 from servicios import servicio_solana
 
@@ -95,10 +95,42 @@ def solana_cliente():
     return render_template(
         'modulos/cliente/ecosistema/solana.html',
         pagina_activa='solana',
-        solana=datos.mercado["solana"],
-        historial_sol=datos.historial_precios,
-        velas_solana=datos.velas_solana
+        solana=servicio_solana.obtener_mercado_solana(),
+        historial_sol=servicio_solana.obtener_historial_solana(),
+        velas_solana=servicio_solana.obtener_velas_solana()
     )
+
+# ===========================================
+# FUNCIONALIDAD A PRUEBA ILLIT
+
+@app.route('/consulta/<wallet_address>', methods=['GET'])
+def consulta(wallet_address):
+    # print(len(wallet_address))
+    if len(wallet_address) < 43 or len(wallet_address) > 44:
+        return jsonify({'error': 'La longitud de la wallet está fuera del rango permitido'})
+    try:
+        datos = servicio_solana.obtener_resumen_wallet(wallet_address)
+        return jsonify(datos)
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route("/consulta", methods=["GET"])
+def consulta_solana():
+    try:
+        datos_mercado = servicio_solana.obtener_mercado_solana()
+        return jsonify(datos_mercado)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/consulta/precio')
+def precio():
+    precio= servicio_solana.consultas["precio"]()
+    return precio
+
+# ===========================================
+
 
 if __name__ == '__main__':
     app.run(debug=True)
